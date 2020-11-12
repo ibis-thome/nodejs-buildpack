@@ -280,9 +280,14 @@ func (s *Supplier) BuildDependencies() error {
 
 	if s.IsVendored {
 		s.Log.Info("Prebuild detected (node_modules already exists)")
-
-		if err := s.NPM.Rebuild(s.Stager.BuildDir()); err != nil {
-			return err
+		if s.UseYarn {
+			if err := s.Yarn.Rebuild(s.Stager.BuildDir()); err != nil {
+				return err
+			}
+		} else {
+			if err := s.NPM.Rebuild(s.Stager.BuildDir()); err != nil {
+				return err
+			}
 		}
 	} else {
 		if s.UseYarn {
