@@ -83,7 +83,5 @@ func (y *Yarn) Build(buildDir, cacheDir string) error {
 
 func (y *Yarn) Rebuild(buildDir string) error {
 	y.Log.Info("Rebuilding any native modules")
-	if err := y.Command.Execute(buildDir, y.Log.Output(), y.Log.Output(), "yarn", "rebuild"); err != nil {
-		return err
-	}
+	return y.Command.Execute(buildDir, y.Log.Output(), y.Log.Output(), "yarn", "rebuild")
 }

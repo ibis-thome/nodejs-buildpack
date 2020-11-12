@@ -47,6 +47,7 @@ type NPM interface {
 
 type Yarn interface {
 	Build(string, string) error
+	Rebuild(string) error
 }
 
 type Stager interface {
